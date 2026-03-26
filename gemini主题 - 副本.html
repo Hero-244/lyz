@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026华中（长沙）疗愈生态博览会 - 在线报名</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* 主色调：明亮暖金色 */
+      --primary: #d4af37;
+      --primary-light: #f5e6b8;
+      --primary-dark: #aa8a2e;
+      
+      /* 辅助色 */
+      --accent: #e6c65c; 
+      
+      /* 文字颜色 */
+      --text-dark: #3d3426;
+      --text-mid: #5d5242;
+      --text-light: #8a7f6e;
+      
+      /* 卡片背景与边框 */
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(212, 175, 55, 0.25);
+      
+      /* 阴影 */
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.06);
+      --shadow-float: 0 12px 30px rgba(212, 175, 55, 0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      /* 明亮米金色渐变背景 */
+      background: linear-gradient(160deg, #FFFEF8 0%, #FFF9E8 40%, #FFF3D8 100%);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container { 
+      max-width: 480px; 
+      margin: 0 auto; 
+      padding: 0 16px 100px; 
+      min-height: 100vh;
+      background: transparent;
+      position: relative;
+    }
+
+    /* 电脑大屏优化 */
+    @media (min-width: 481px) {
+      body {
+        /* 电脑端外围背景：暖米色，凸显手机框 */
+        background: #E8E4D9; 
+      }
+      .container {
+        background: linear-gradient(160deg, #FFFEF8 0%, #FFF9E8 50%, #FFF3D8 100%);
+        box-shadow: 0 0 50px rgba(0,0,0,0.06);
+      }
+    }
+
+    /* ====== 悬浮报名按钮 ====== */
+    .float-btn {
+      display: none; /* 隐藏悬浮按钮，统一用底部CTA */
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      padding: 32px 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
+    }
+    .hero-sub {
+      font-size: 12px;
+      color: var(--text-mid);
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-dark);
+      font-weight: 500;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .hero-meta-item i { color: var(--primary); font-size: 11px; }
+
+    /* ====== 倒计时横幅 ====== */
+    .countdown-banner {
+      background: linear-gradient(135deg, #d4af37, #aa8a2e);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+    .countdown-main {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .countdown-days {
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .countdown-benefit {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 11px;
+      margin-top: 8px;
+      opacity: 0.95;
+    }
+    .countdown-benefit span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ====== 已报名数字 ====== */
+    .signup-count {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 14px;
+      backdrop-filter: blur(4px);
+    }
+    .signup-count i { color: var(--primary); margin-right: 6px; }
+    .signup-count strong { color: var(--primary-dark); font-size: 18px; }
+
+    /* ====== 展区规划 ====== */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .zone-item {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .zone-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.2);
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .zone-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+    .zone-name { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .zone-sub { font-size: 10px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ====== CARD ====== */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--card-border);
+    }
+    .section-eyebrow {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    /* ====== 活动列表 ====== */
+    .activity-list { display: flex; flex-direction: column; gap: 12px; }
+    .activity-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 12px; padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    .activity-icon {
+      width: 38px; height: 38px; min-width: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 14px;
+    }
+    .activity-body { flex: 1; }
+    .activity-name { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .activity-time { font-size: 12px; color: var(--primary-dark); font-weight: 600; margin-bottom: 4px; }
+    .activity-desc { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ====== 参展流程 ====== */
+    .steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 4px; margin-top: 10px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 6px;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
+    }
+    .step-label { font-size: 10px; color: var(--text-mid); line-height: 1.3; font-weight: 500; }
+    .step-arrow { color: var(--primary-light); font-size: 12px; margin-top: 6px; display: block; }
+
+    /* ====== 展位定价 ====== */
+    .booth-list { display: flex; flex-direction: column; gap: 12px; }
+    .booth-item {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 14px;
+      padding: 16px;
+      transition: all 0.25s ease;
+    }
+    .booth-item:hover { border-color: var(--primary); background: #FFFFFF; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); }
+    .booth-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .booth-name { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+    .booth-price { font-size: 16px; font-weight: 700; color: var(--primary-dark); }
+    .booth-detail { font-size: 11px; color: var(--text-mid); margin-bottom: 6px; }
+    .booth-detail span { margin-right: 12px; color: var(--text-dark); font-weight: 500; }
+    .booth-detail i { color: var(--primary); margin-right: 4px; }
+
+    /* ====== 媒体矩阵 ====== */
+    .media-group-title {
+      font-size: 12px;
+      color: var(--text-mid);
+      font-weight: 600;
+      margin: 16px 0 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .media-group-title::before, .media-group-title::after {
+      content: '';
+      height: 1px;
+      width: 30px;
+      background: var(--primary-light);
+      opacity: 0.5;
+    }
+    .social-media-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .social-media-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 12px 6px;
+      transition: all 0.2s ease;
+    }
+    .social-media-item:hover { border-color: var(--primary); background: #FFFFFF; }
+    .social-icon { font-size: 24px; }
+    .icon-wechat { color: #07C160; }
+    .icon-douyin { color: #111111; text-shadow: -1px -1px 0 #00ffff, 1px 1px 0 #ff0050; }
+    .icon-xhs { color: #FF2442; }
+    .icon-bilibili { color: #00A1D6; }
+    .icon-weibo { color: #E6162D; }
+    .icon-video { color: #FA5032; }
+    .icon-tencent { color: #FF9900; }
+    .icon-sohu { color: #FEE100; }
+    .social-name { font-size: 10px; color: var(--text-dark); font-weight: 500; }
+
+    .news-media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .news-media-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      padding: 10px 4px;
+      font-size: 11px;
+      color: var(--text-mid);
+    }
+    .news-media-item i { color: var(--primary-light); font-size: 12px; }
+
+    .qr-row {
+      display: flex;
+      align-items: stretch;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 14px;
+      padding: 16px 10px;
+      gap: 0;
+      margin-top: 20px;
+    }
+    .qr-item { flex: 1; text-align: center; }
+    .qr-divider { width: 1px; background: var(--card-border); margin: 0 6px; align-self: stretch; }
+    .qr-box {
+      width: 54px; height: 54px;
+      background: white;
+      border: 1px dashed var(--primary-light);
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2px;
+      margin: 0 auto 8px;
+    }
+    .qr-label { font-size: 12px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .qr-sub { font-size: 10px; color: var(--text-light); }
+
+    /* ====== FORM ====== */
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .form-label .req { color: var(--accent); font-size: 12px; margin-left: 4px; }
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 12px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+    .form-input.err { border-color: var(--accent); background: #FFF9F9; }
+    .err-msg { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
+    .err-msg.show { display: block; }
+
+    /* ====== IDENTITY RADIOS ====== */
+    .identity-radios { display: flex; gap: 8px; }
+    .identity-radio {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .identity-radio input { display: none; }
+    .identity-radio.active {
+      border-color: var(--primary);
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* ====== ZONE CHIPS ====== */
+    .zone-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .zone-chip { position: relative; }
+    .zone-chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .zone-chip label {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .zone-chip input:checked + label {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ====== SUBMIT ====== */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+      transition: all 0.3s ease;
+      font-family: inherit;
+      margin-top: 10px;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(212, 175, 55, 0.45); }
+    .privacy-tip {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* ====== CONTACT ====== */
+    .contact-grid { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px; 
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 14px;
+      padding: 16px 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .contact-item:hover { border-color: var(--primary); transform: translateY(-2px); background: #FFFFFF; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2); }
+    .contact-avatar {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: white;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+    }
+    .contact-name { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+    .contact-tel { font-size: 12px; color: var(--text-mid); text-align: center; }
+
+    /* ====== 底部一键拨号 ====== */
+    .bottom-cta {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: transparent;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      box-sizing: border-box;
+      border-radius: 0 0 24px 24px;
+    }
+    .bottom-cta-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 36px;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+    .bottom-cta-item i { font-size: 15px; }
+
+    /* ====== FOOTER ====== */
+    .footer {
+      text-align: center;
+      padding: 20px 0 120px;
+      color: var(--text-light);
+      font-size: 11px;
+      line-height: 2;
+    }
+    .footer-brand {
+      margin-bottom: 16px;
+    }
+    .footer-brand p { margin: 4px 0; }
+    .footer-theme { color: var(--primary-dark); font-weight: 700; letter-spacing: 2px; font-size: 13px; margin-bottom: 8px; }
+
+    /* ====== MODAL ====== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(59, 46, 51, 0.5); /* 弹窗遮罩也带点紫褐色 */
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-icon { font-size: 50px; margin-bottom: 16px; display: block; }
+    .modal-title { font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; }
+    .modal-desc { font-size: 14px; color: var(--text-mid); line-height: 1.8; margin-bottom: 24px; white-space: pre-line; }
+    .modal-close {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <button class="float-btn" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+    <i class="fas fa-paper-plane"></i> 立即报名
+  </button>
+
+  <div class="hero">
+    <div class="hero-badge">疗愈 · 生态 · 共生</div>
+    <h1 class="hero-title">2026华中（长沙）<br>疗愈生态博览会</h1>
+    <p class="hero-sub">HEALING ECOSYSTEM</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><i class="fas fa-calendar-alt"></i> 6月18—20日</div>
+      <div class="hero-meta-item"><i class="fas fa-map-marker-alt"></i> 湖南国际会展中心</div>
+    </div>
+  </div>
+
+  <div class="countdown-banner">
+    <div class="countdown-main">🎉 早鸟优惠 · 4月30日截止 · 仅剩 <span class="countdown-days" id="countdown-days">--天</span></div>
+    <div class="countdown-benefit">
+      <span><i class="fas fa-users"></i> 精准客流</span>
+      <span><i class="fas fa-award"></i> 政府背书</span>
+      <span><i class="fas fa-handshake"></i> 产业对接</span>
+    </div>
+  </div>
+
+  <div class="signup-count">
+    <i class="fas fa-fire"></i> 已有 <strong>23</strong> 家品牌确认参展，展位火热预订中
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">展区规划</div>
+    <div class="section-title">八大主题展区</div>
+    <img src="展区规划.png" alt="展区规划" style="width:100%;border-radius:12px;display:block;">
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">精彩活动</div>
+    <div class="section-title">现场主题活动</div>
+    <div class="activity-list">
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-star"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">开幕式</div>
+          <div class="activity-time">6月18日 · 09:08</div>
+          <div class="activity-desc">行业嘉宾分享及创新发展联盟启动仪式</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-microphone-alt"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">疗愈大咖分享会</div>
+          <div class="activity-time">6月18日—20日</div>
+          <div class="activity-desc">知名专家及生活美学研究者主题演讲</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-music"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">疗愈演出</div>
+          <div class="activity-time">每日2场</div>
+          <div class="activity-desc">颂钵音乐会、手碟演奏等沉浸式舒缓氛围</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">快速报名</div>
+    <div class="section-title">参展流程</div>
+    <img src="流程图.png" alt="参展流程" style="width:100%;border-radius:12px;display:block;">
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">展位定价</div>
+    <div class="section-title">展位价格体系</div>
+    <img src="展位定价.png" alt="展位定价" style="width:100%;border-radius:12px;display:block;margin-bottom:16px;">
+    <div class="booth-list">
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">迷你展位 3㎡</span><span class="booth-price">¥3,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：个人疗愈师、工作室</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：围板+楣板+桌椅+基础灯光</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">标准展位 6㎡</span><span class="booth-price">¥6,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：中小型工作室</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：围板+楣板+桌椅+照明+电源</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">标准展位 9㎡</span><span class="booth-price">¥9,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：品牌企业（推荐）</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：全配展位+2椅+洽谈桌+广告位</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">品牌展位 18㎡</span><span class="booth-price">¥18,000</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：连锁品牌、代理商</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：独立空间+定制装修+媒体曝光</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">特装展位 36㎡+</span><span class="booth-price">面议</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：头部品牌、上市公司</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：最大展示面积+优先位置+定制服务</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">千万级曝光</div>
+    <div class="section-title">全网媒体矩阵</div>
+    
+    <div class="media-group-title">社交与视频平台</div>
+    <div class="social-media-grid">
+      <div class="social-media-item">
+        <i class="fab fa-weixin social-icon icon-wechat"></i>
+        <span class="social-name">微信生态</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fab fa-tiktok social-icon icon-douyin"></i>
+        <span class="social-name">抖音</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fas fa-book-open social-icon icon-xhs"></i>
+        <span class="social-name">小红书</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fab fa-weibo social-icon icon-weibo"></i>
+        <span class="social-name">微博</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fab fa-bilibili social-icon icon-bilibili"></i>
+        <span class="social-name">B站</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fas fa-video social-icon icon-video"></i>
+        <span class="social-name">视频号</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fab fa-tencent-weibo social-icon icon-tencent"></i>
+        <span class="social-name">腾讯视频</span>
+      </div>
+      <div class="social-media-item">
+        <i class="fas fa-play-circle social-icon icon-sohu"></i>
+        <span class="social-name">搜狐视频</span>
+      </div>
+    </div>
+
+    <div class="media-group-title">权威资讯平台</div>
+    <div class="news-media-grid">
+      <div class="news-media-item"><i class="fas fa-globe"></i> 人民网</div>
+      <div class="news-media-item"><i class="fas fa-fire"></i> 凤凰网</div>
+      <div class="news-media-item"><i class="fas fa-newspaper"></i> 今日头条</div>
+      <div class="news-media-item"><i class="fas fa-paw"></i> 百度资讯</div>
+      <div class="news-media-item"><i class="fas fa-search"></i> 搜狐网</div>
+      <div class="news-media-item"><i class="fas fa-chart-line"></i> 焦点财经</div>
+      <div class="news-media-item"><i class="fas fa-coins"></i> 环球财富</div>
+      <div class="news-media-item"><i class="fas fa-briefcase"></i> MBA环球</div>
+      <div class="news-media-item"><i class="fas fa-rss"></i> 华讯网</div>
+    </div>
+
+    <div class="qr-row">
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-bookmark" style="color:var(--primary);font-size:20px;"></i></div>
+        <p class="qr-label">官方公众号</p>
+        <p class="qr-sub">获取资讯</p>
+      </div>
+      <div class="qr-divider"></div>
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-comments" style="color:var(--primary);font-size:20px;"></i></div>
+        <p class="qr-label">招商咨询群</p>
+        <p class="qr-sub">一对一答疑</p>
+      </div>
+      <div class="qr-divider"></div>
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-ticket-alt" style="color:var(--primary);font-size:20px;"></i></div>
+        <p class="qr-label">观众报名</p>
+        <p class="qr-sub">免费预约</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="form-section">
+    <div class="section-eyebrow">立即报名</div>
+    <div class="section-title">获取展位方案</div>
+
+    <form id="form-main" action="https://api.web3forms.com/submit" method="POST" target="_blank">
+      <input type="hidden" name="access_key" value="87054486-1c3d-4dc8-adfa-6c8920752a0a">
+      <input type="hidden" name="subject" value="【疗愈展】新的参展报名申请">
+      <input type="hidden" name="from_name" value="疗愈生态博览会">
+      <input type="checkbox" name="botcheck" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">我是：<span class="req">*</span></label>
+        <div class="identity-radios">
+          <label class="identity-radio active" id="label-exhibitor">
+            <input type="radio" name="identity" id="radio-exhibitor" value="exhibitor" checked onclick="selectIdentity('exhibitor')">
+            <i class="fas fa-store"></i> 品牌商
+          </label>
+          <label class="identity-radio" id="label-visitor">
+            <input type="radio" name="identity" id="radio-visitor" value="visitor" onclick="selectIdentity('visitor')">
+            <i class="fas fa-user"></i> 个人疗愈师
+          </label>
+          <label class="identity-radio" id="label-media">
+            <input type="radio" name="identity" id="radio-media" value="visitor" onclick="selectIdentity('visitor')">
+            <i class="fas fa-user"></i> 观众
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">姓名 <span class="req">*</span></label>
+        <input type="text" class="form-input" id="f-name" placeholder="请输入您的姓名">
+        <div class="err-msg" id="f-name-err">请填写姓名</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">手机号码 <span class="req">*</span></label>
+        <input type="tel" class="form-input" id="f-phone" placeholder="请输入手机号码" maxlength="11">
+        <div class="err-msg" id="f-phone-err">请填写正确的手机号码</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">品牌 / 机构名称</label>
+        <input type="text" class="form-input" id="f-company" placeholder="请输入品牌或机构名称">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">意向展区 <span class="opt" style="color:var(--text-light); font-weight:normal;">（选填）</span></label>
+        <div class="zone-chips">
+          <div class="zone-chip"><input type="checkbox" name="z" id="z1" value="植物本草"><label for="z1">🌿 植物本草</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z2" value="AI科技"><label for="z2">🤖 AI科技</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z3" value="身心疗愈"><label for="z3">🧘 身心疗愈</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z4" value="艺术疗愈"><label for="z4">🎨 艺术疗愈</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z5" value="情绪价值"><label for="z5">💫 情绪价值</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z6" value="汽车生活"><label for="z6">🚗 汽车生活</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z7" value="运动瑜伽"><label for="z7">💪 运动瑜伽</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z8" value="音声疗愈"><label for="z8">🎵 音声疗愈</label></div>
+        </div>
+      </div>
+
+      <!-- 隐藏字段用于传递数据到Web3Forms -->
+      <input type="hidden" name="identity" id="h-identity" value="品牌商">
+      <input type="hidden" name="company" id="h-company" value="">
+      <input type="hidden" name="zones" id="h-zones" value="">
+
+      <button type="submit" class="submit-btn" id="submit-btn">
+        <i class="fas fa-paper-plane"></i> <span id="submit-text">立即获取展位方案</span>
+      </button>
+      <div class="privacy-tip" id="privacy-tip">您的信息仅用于展会招商联络<br>招商顾问将在1个工作日内与您联系</div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="section-eyebrow">一对一服务</div>
+    <div class="section-title">招商顾问</div>
+    <div class="contact-grid">
+      <a href="tel:13973186313" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">周 莹</div>
+        <div class="contact-tel">139-7318-6313</div>
+      </a>
+      <a href="tel:17608428362" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">周向子兰</div>
+        <div class="contact-tel">176-0842-8362</div>
+      </a>
+      <a href="tel:17773745749" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">刘 琛</div>
+        <div class="contact-tel">177-7374-5749</div>
+      </a>
+      <a href="tel:13762468407" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">李晓婉</div>
+        <div class="contact-tel">137-6246-8407</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="footer-theme">疗愈 · 生态 · 共生</div>
+      <p>2026华中（长沙）疗愈生态博览会</p>
+      <p>2026年6月18日—20日 · 湖南国际会展中心</p>
+    </div>
+    <p>湖南易展科技有限公司 · 湖南优胜国际会展有限公司</p>
+    <p style="margin-top:10px;">© 2026 All Rights Reserved</p>
+  </div>
+
+</div>
+
+<div class="bottom-cta">
+  <a href="tel:13973186313" class="bottom-cta-item">
+    <i class="fas fa-phone-alt"></i> 立即咨询
+  </a>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <span class="modal-icon">🌿</span>
+    <div class="modal-title" id="modal-title">提交成功！</div>
+    <div class="modal-desc" id="modal-desc">感谢您的关注！</div>
+    <button class="modal-close" onclick="closeModal()">知道了</button>
+  </div>
+</div>
+
+<script>
+  var currentIdentity = 'exhibitor';
+
+  // 倒计时自动计算
+  (function updateCountdown() {
+    var now = new Date();
+    var end = new Date('2026-04-30T23:59:59');
+    var diff = end - now;
+    if (diff > 0) {
+      var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('countdown-days').textContent = days + '天';
+    } else {
+      document.getElementById('countdown-days').textContent = '已结束';
+    }
+  })();
+
+  function selectIdentity(type) {
+    currentIdentity = type;
+    document.getElementById('label-exhibitor').classList.toggle('active', type === 'exhibitor');
+    document.getElementById('label-visitor').classList.toggle('active', type === 'visitor');
+    document.getElementById('label-media').classList.toggle('active', type === 'visitor');
+    document.getElementById('radio-exhibitor').checked = type === 'exhibitor';
+    document.getElementById('radio-visitor').checked = type === 'visitor';
+    document.getElementById('radio-media').checked = type === 'visitor';
+    
+    var btn = document.getElementById('submit-btn');
+    var text = document.getElementById('submit-text');
+    var tip = document.getElementById('privacy-tip');
+    
+    if (type === 'exhibitor') {
+      text.textContent = '立即获取展位方案';
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + text.textContent;
+      tip.innerHTML = '您的信息仅用于展会招商联络<br>招商顾问将在1个工作日内与您联系';
+    } else {
+      text.textContent = '预约参观咨询';
+      btn.innerHTML = '<i class="fas fa-calendar-check"></i> ' + text.textContent;
+      tip.innerHTML = '获取展会最新资讯<br>免费预约参观门票';
+    }
+  }
+
+  // Web3Forms提交处理
+  document.getElementById('form-main').addEventListener('submit', function(e) {
+    // 验证表单
+    ['f-name','f-phone'].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove('err'); });
+    ['f-name','f-phone'].forEach(function(id){ var e=document.getElementById(id+'-err'); if(e) e.classList.remove('show'); });
+    
+    var name = (document.getElementById('f-name').value||'').trim();
+    var phone = (document.getElementById('f-phone').value||'').trim();
+    var ok = true;
+    
+    if (!name) { document.getElementById('f-name').classList.add('err'); document.getElementById('f-name-err').classList.add('show'); ok=false; }
+    if (!/^1[3-9]\d{9}$/.test(phone)) { document.getElementById('f-phone').classList.add('err'); document.getElementById('f-phone-err').classList.add('show'); ok=false; }
+    if (!ok) { e.preventDefault(); return; }
+    
+    // 填充隐藏字段
+    var identityText = currentIdentity === 'exhibitor' ? '品牌商' : (currentIdentity === 'visitor' ? '个人疗愈师' : '观众');
+    document.getElementById('h-identity').value = identityText;
+    document.getElementById('h-company').value = (document.getElementById('f-company').value||'').trim();
+    
+    // 收集选中的展区
+    var zones = [];
+    document.querySelectorAll('input[name="z"]:checked').forEach(function(cb){ zones.push(cb.value); });
+    document.getElementById('h-zones').value = zones.join(', ');
+    
+    // 显示成功提示（Web3Forms会自己跳转）
+    // 表单会提交到Web3Forms，然后发送邮件给我们
+  });
+
+  function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+  ['f-name','f-phone','f-company'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function(){
+      this.classList.remove('err');
+      var e = document.getElementById(this.id + '-err');
+      if (e) e.classList.remove('show');
+    });
+  });
+</script>
+</body>
+</html>

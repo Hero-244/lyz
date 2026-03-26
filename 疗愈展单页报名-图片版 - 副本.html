@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026华中（长沙）疗愈生态博览会 - 在线报名</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #c9a84c;
+      --primary-light: #f0e6c8;
+      --primary-dark: #8B6914;
+      --coral: #c67d4e;
+      --text-dark: #4a3d2a;
+      --text-mid: #7a6a55;
+      --text-light: #a89580;
+      --card-bg: rgba(255,252,245,0.95);
+      --card-border: rgba(255,250,240,0.8);
+      --shadow-card: 0 8px 32px rgba(139,105,20,0.12);
+      --shadow-float: 0 12px 40px rgba(139,105,20,0.18);
+      --bg-gradient: linear-gradient(165deg, rgba(255,248,235,0.98) 0%, rgba(245,235,210,0.95) 50%, rgba(235,220,180,0.98) 100%);
+      --purple: #9b8ab8;
+      --pink-a: #e8b4c8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 480px; margin: 0 auto; padding: 0 16px 100px; }
+
+    /* ====== 悬浮报名按钮 ====== */
+    .float-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .float-btn:hover {
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.55);
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      padding: 32px 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
+    }
+    .hero-sub {
+      font-size: 12px;
+      color: var(--text-mid);
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.75);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-dark);
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .hero-meta-item i { color: var(--primary); font-size: 11px; }
+
+    /* ====== 倒计时横幅 ====== */
+    .countdown-banner {
+      background: linear-gradient(135deg, var(--primary-dark), var(--coral));
+      color: white;
+      padding: 14px 20px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(139,105,20,0.25);
+    }
+    .countdown-main {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .countdown-benefit {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 11px;
+      margin-top: 8px;
+      opacity: 0.95;
+    }
+    .countdown-benefit span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ====== 已报名数字 ====== */
+    .signup-count {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .signup-count i { color: var(--coral); margin-right: 6px; }
+    .signup-count strong { color: var(--coral); font-size: 18px; }
+
+    /* ====== 信任背书 ====== */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--text-mid);
+    }
+    .trust-bar img {
+      height: 24px;
+      opacity: 0.8;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .trust-item i { color: var(--primary); }
+
+    /* ====== 展区 ====== */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .zone-item {
+      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,250,240,0.85));
+      border: 1.5px solid rgba(201,168,76,0.2);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .zone-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-light), var(--primary), var(--primary-dark));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .zone-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(201,168,76,0.2);
+    }
+    .zone-item:hover::before { opacity: 1; }
+    .zone-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+    .zone-name { font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+    .zone-tag { font-size: 10px; color: var(--text-light); margin-bottom: 4px; }
+    .zone-sub { font-size: 9px; color: var(--primary); margin-top: 3px; line-height: 1.4; font-weight: 500; }
+
+    /* ====== CARD ====== */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--card-border);
+    }
+    .card-top-bar {
+      height: 4px;
+      border-radius: 4px 4px 0 0;
+      margin: -20px -16px 16px;
+      background: linear-gradient(90deg, var(--primary-light), var(--primary), var(--primary-dark));
+    }
+    .section-eyebrow {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    /* ====== 活动列表 ====== */
+    .activity-list { display: flex; flex-direction: column; gap: 10px; }
+    .activity-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px; padding: 12px;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .activity-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 13px;
+    }
+    .activity-body { flex: 1; }
+    .activity-name { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .activity-time { font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 3px; }
+    .activity-desc { font-size: 11px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ====== 参展流程 ====== */
+    .steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 4px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white; font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 4px;
+    }
+    .step-label { font-size: 9px; color: var(--text-mid); line-height: 1.3; }
+    .step-arrow { color: var(--primary); font-size: 10px; margin-top: 4px; display: block; }
+
+    /* ====== 展位定价 ====== */
+    .booth-list { display: flex; flex-direction: column; gap: 10px; }
+    .booth-item {
+      background: rgba(255,255,255,0.8);
+      border: 1.5px solid rgba(201,168,76,0.2);
+      border-radius: 14px;
+      padding: 14px;
+      transition: all 0.25s ease;
+    }
+    .booth-item:hover { border-color: var(--primary); }
+    .booth-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .booth-name { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+    .booth-price { font-size: 16px; font-weight: 700; color: var(--primary-dark); }
+    .booth-detail { font-size: 10px; color: var(--text-light); margin-bottom: 4px; }
+    .booth-detail span { margin-right: 12px; }
+    .booth-detail i { color: var(--primary); margin-right: 3px; }
+
+    /* ====== 媒体 ====== */
+    .media-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 10px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 10px;
+    }
+    .media-chip {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--text-mid);
+    }
+    .media-chip i { color: var(--primary); font-size: 14px; }
+    .qr-row {
+      display: flex;
+      align-items: stretch;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(245,175,196,0.08));
+      border-radius: 14px;
+      padding: 14px 10px;
+      gap: 0;
+    }
+    .qr-item { flex: 1; text-align: center; }
+    .qr-divider { width: 1px; background: rgba(201,168,76,0.2); margin: 0 4px; align-self: stretch; }
+    .qr-box {
+      width: 50px; height: 50px;
+      background: white;
+      border: 2px dashed rgba(201,168,76,0.4);
+      border-radius: 10px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2px;
+      margin: 0 auto 6px;
+    }
+    .qr-label { font-size: 11px; font-weight: 600; color: var(--text-dark); }
+    .qr-sub { font-size: 9px; color: var(--text-light); }
+
+    /* ====== FORM ====== */
+    .form-group { margin-bottom: 14px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-dark);
+      margin-bottom: 7px;
+      font-weight: 500;
+    }
+    .form-label .req { color: var(--coral); font-size: 11px; margin-left: 2px; }
+    .form-input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 2px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      font-size: 14px;
+      background: rgba(255,255,255,0.95);
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    .form-input.err { border-color: var(--coral); background: #fff8f8; }
+    .err-msg { font-size: 10px; color: var(--coral); margin-top: 5px; display: none; }
+    .err-msg.show { display: block; }
+
+    /* ====== IDENTITY RADIOS ====== */
+    .identity-radios { display: flex; gap: 8px; }
+    .identity-radio {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 8px;
+      border-radius: 12px;
+      border: 2px solid rgba(201,168,76,0.25);
+      background: rgba(255,255,255,0.8);
+      font-size: 12px;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .identity-radio input { display: none; }
+    .identity-radio.active {
+      border-color: var(--primary);
+      background: rgba(201,168,76,0.15);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* ====== ZONE CHIPS ====== */
+    .zone-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .zone-chip { position: relative; }
+    .zone-chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .zone-chip label {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.85);
+      border: 2px solid rgba(201,168,76,0.25);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .zone-chip input:checked + label {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      border-color: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    /* ====== SUBMIT ====== */
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+      transition: all 0.3s ease;
+      font-family: inherit;
+      margin-top: 6px;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,168,76,0.45); }
+    .privacy-tip {
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* ====== CONTACT ====== */
+    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.75);
+      border: 1.5px solid rgba(201,168,76,0.2);
+      border-radius: 14px;
+      padding: 14px 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .contact-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .contact-avatar {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: white;
+    }
+    .contact-name { font-size: 12px; font-weight: 600; color: var(--text-dark); }
+    .contact-tel { font-size: 10px; color: var(--text-mid); text-align: center; }
+
+    /* ====== 底部一键拨号 ====== */
+    .bottom-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+      padding: 12px 16px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+      z-index: 99;
+    }
+    .bottom-cta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .bottom-cta-item i { font-size: 14px; }
+
+    /* ====== FOOTER ====== */
+    .footer {
+      text-align: center;
+      padding: 20px 0 120px;
+      color: var(--text-light);
+      font-size: 10px;
+      line-height: 2;
+    }
+    .footer-brand {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .footer-brand p { margin: 3px 0; }
+    .footer-theme { color: var(--primary); font-weight: 700; letter-spacing: 2px; font-size: 12px; }
+
+    /* ====== MODAL ====== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      animation: popIn 0.3s ease;
+    }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-icon { font-size: 50px; margin-bottom: 14px; display: block; }
+    .modal-title { font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .modal-desc { font-size: 13px; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; white-space: pre-line; }
+    .modal-close {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: white;
+    }
+
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 悬浮报名按钮 -->
+  <button class="float-btn" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+    <i class="fas fa-paper-plane"></i> 立即报名
+  </button>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">疗愈 · 生态 · 共生</div>
+    <h1 class="hero-title">2026华中（长沙）<br>疗愈生态博览会</h1>
+    <p class="hero-sub">HEALING ECOSYSTEM</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><i class="fas fa-calendar-alt"></i> 6月18—20日</div>
+      <div class="hero-meta-item"><i class="fas fa-map-marker-alt"></i> 湖南国际会展中心</div>
+    </div>
+  </div>
+
+  <!-- 倒计时横幅 -->
+  <div class="countdown-banner">
+    <div class="countdown-main">🎉 早鸟优惠 · 4月30日截止</div>
+    <div class="countdown-benefit">
+      <span><i class="fas fa-users"></i> 精准客流</span>
+      <span><i class="fas fa-award"></i> 政府背书</span>
+      <span><i class="fas fa-handshake"></i> 产业对接</span>
+    </div>
+  </div>
+
+  <!-- 已报名数字 -->
+  <div class="signup-count">
+    <i class="fas fa-fire"></i> 已有 <strong>23</strong> 家品牌确认参展，展位火热预订中
+  </div>
+
+  <!-- 展区规划 -->
+  <div class="card">
+    <div class="section-eyebrow">展区规划</div>
+    <div class="section-title">八大主题展区</div>
+    <div class="zones-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="zone-item">
+        <span class="zone-icon">🌿</span>
+        <div class="zone-name">植物本草疗愈区</div>
+        <div class="zone-tag">自然疗愈力量</div>
+        <div class="zone-sub">中医理疗·香道文化·草本精油·芳疗教育</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">🤖</span>
+        <div class="zone-name">AI科技疗愈区</div>
+        <div class="zone-tag">智能健康未来</div>
+        <div class="zone-sub">心理陪伴·智能设备·疗愈机器人</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">🧘</span>
+        <div class="zone-name">身心疗愈区</div>
+        <div class="zone-tag">压力释放与放松</div>
+        <div class="zone-sub">新消费品牌·非遗手作·疗愈文创</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">🎨</span>
+        <div class="zone-name">艺术疗愈区</div>
+        <div class="zone-tag">创意与情感连接</div>
+        <div class="zone-sub">艺术表达·疗愈美业</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">💫</span>
+        <div class="zone-name">情绪价值主题区</div>
+        <div class="zone-tag">情绪经济新风口</div>
+        <div class="zone-sub">情绪香氛·情绪服务体验·情绪好物市集</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">🚗</span>
+        <div class="zone-name">汽车生活疗愈区</div>
+        <div class="zone-tag">移动疗愈空间</div>
+        <div class="zone-sub">疗愈座舱体验角·车载疗愈装备</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">💪</span>
+        <div class="zone-name">运动瑜伽疗愈区</div>
+        <div class="zone-tag">身心合一</div>
+        <div class="zone-sub">瑜伽·普拉提·运动康复</div>
+      </div>
+      <div class="zone-item">
+        <span class="zone-icon">🎵</span>
+        <div class="zone-name">音声疗愈区</div>
+        <div class="zone-tag">声波疗愈</div>
+        <div class="zone-sub">颂钵·铜钵·音叉·自然音声·神修冥想</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 展区活动 -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">精彩活动</div>
+    <div class="section-title">现场主题活动</div>
+    <div class="activity-list">
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-star"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">开幕式</div>
+          <div class="activity-time">6月18日 · 09:08</div>
+          <div class="activity-desc">行业嘉宾分享及创新发展联盟启动仪式</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-microphone-alt"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">疗愈大咖分享会</div>
+          <div class="activity-time">6月18日—20日</div>
+          <div class="activity-desc">知名专家及生活美学研究者主题演讲</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-icon"><i class="fas fa-music"></i></div>
+        <div class="activity-body">
+          <div class="activity-name">疗愈演出</div>
+          <div class="activity-time">每日2场</div>
+          <div class="activity-desc">颂钵音乐会、手碟演奏等沉浸式舒缓氛围</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 参展流程 -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">快速报名</div>
+    <div class="section-title">参展流程</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-label">提交意向</div><span class="step-arrow">→</span></div>
+      <div class="step"><div class="step-num">2</div><div class="step-label">推荐展位</div><span class="step-arrow">→</span></div>
+      <div class="step"><div class="step-num">3</div><div class="step-label">确认方案</div><span class="step-arrow">→</span></div>
+      <div class="step"><div class="step-num">4</div><div class="step-label">签署合同</div><span class="step-arrow">→</span></div>
+      <div class="step"><div class="step-num">5</div><div class="step-label">完成付款</div><span class="step-arrow"></span></div>
+    </div>
+  </div>
+
+  <!-- 展位定价 -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">展位定价</div>
+    <div class="section-title">展位价格体系</div>
+    <div class="booth-list">
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">迷你展位 3㎡</span><span class="booth-price">¥3,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：个人疗愈师、工作室</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：围板+楣板+桌椅+基础灯光</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">标准展位 6㎡</span><span class="booth-price">¥6,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：中小型工作室</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：围板+楣板+桌椅+照明+电源</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">标准展位 9㎡</span><span class="booth-price">¥9,800</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：品牌企业（推荐）</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：全配展位+2椅+洽谈桌+广告位</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">品牌展位 18㎡</span><span class="booth-price">¥18,000</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：连锁品牌、代理商</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：独立空间+定制装修+媒体曝光</div>
+      </div>
+      <div class="booth-item">
+        <div class="booth-header"><span class="booth-name">特装展位 36㎡+</span><span class="booth-price">面议</span></div>
+        <div class="booth-detail"><span><i class="fas fa-user"></i> 适合：头部品牌、上市公司</span></div>
+        <div class="booth-detail"><i class="fas fa-check"></i> 含：最大展示面积+优先位置+定制服务</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 媒体矩阵 -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">全媒体推广</div>
+    <div class="section-title">媒体矩阵</div>
+    <div class="media-row">
+      <div class="media-chip"><i class="fas fa-globe"></i> 人民网</div>
+      <div class="media-chip"><i class="fas fa-coins"></i> 环球财富网</div>
+      <div class="media-chip"><i class="fas fa-bullseye"></i> 焦点财经网</div>
+      <div class="media-chip"><i class="fab fa-instagram"></i> 小红书</div>
+      <div class="media-chip"><i class="fas fa-video"></i> 视频号</div>
+      <div class="media-chip"><i class="fab fa-tiktok"></i> 抖音</div>
+      <div class="media-chip"><i class="fab fa-bilibili"></i> B站</div>
+      <div class="media-chip"><i class="fab fa-weibo"></i> 微博</div>
+      <div class="media-chip"><i class="fas fa-search"></i> 搜狐</div>
+      <div class="media-chip"><i class="fas fa-dove"></i> 凤凰网</div>
+      <div class="media-chip"><i class="fas fa-graduation-cap"></i> MBA环球网</div>
+      <div class="media-chip"><i class="fab fa-weixin"></i> 微信</div>
+      <div class="media-chip"><i class="fas fa-hand-peace"></i> 快手</div>
+      <div class="media-chip"><i class="fas fa-paw"></i> 百度</div>
+      <div class="media-chip"><i class="fas fa-newspaper"></i> 今日头条</div>
+      <div class="media-chip"><i class="fas fa-comments"></i> 人民时评网</div>
+      <div class="media-chip"><i class="fas fa-signal"></i> 华讯网</div>
+      <div class="media-chip"><i class="fas fa-microphone"></i> 人民之声</div>
+      <div class="media-chip"><i class="fas fa-play-circle"></i> 腾讯视频</div>
+      <div class="media-chip"><i class="fas fa-tv"></i> 搜狐视频</div>
+      <div class="media-chip"><i class="fas fa-video"></i> 网易视频</div>
+      <div class="media-chip"><i class="fas fa-play"></i> 优酷</div>
+      <div class="media-chip"><i class="fas fa-play-square"></i> 西瓜视频</div>
+    </div>
+    <div class="qr-row">
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-bookmark" style="color:var(--primary);font-size:18px;"></i></div>
+        <p class="qr-label">官方公众号</p>
+        <p class="qr-sub">获取资讯</p>
+      </div>
+      <div class="qr-divider"></div>
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-comments" style="color:var(--primary);font-size:18px;"></i></div>
+        <p class="qr-label">招商咨询群</p>
+        <p class="qr-sub">一对一答疑</p>
+      </div>
+      <div class="qr-divider"></div>
+      <div class="qr-item">
+        <div class="qr-box"><i class="fas fa-ticket-alt" style="color:var(--primary);font-size:18px;"></i></div>
+        <p class="qr-label">观众报名</p>
+        <p class="qr-sub">免费预约</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 报名表单 -->
+  <div class="card" id="form-section">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">立即报名</div>
+    <div class="section-title">获取展位方案</div>
+
+    <form id="form-main" onsubmit="return false;">
+      <!-- 身份选择 -->
+      <div class="form-group">
+        <label class="form-label">我是：<span class="req">*</span></label>
+        <div class="identity-radios">
+          <label class="identity-radio active" id="label-exhibitor">
+            <input type="radio" name="identity" id="radio-exhibitor" value="exhibitor" checked onclick="selectIdentity('exhibitor')">
+            <i class="fas fa-store"></i> 品牌商
+          </label>
+          <label class="identity-radio" id="label-visitor">
+            <input type="radio" name="identity" id="radio-visitor" value="visitor" onclick="selectIdentity('visitor')">
+            <i class="fas fa-user"></i> 个人疗愈师
+          </label>
+          <label class="identity-radio" id="label-media">
+            <input type="radio" name="identity" id="radio-media" value="media" onclick="selectIdentity('media')">
+            <i class="fas fa-newspaper"></i> 媒体
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">姓名 <span class="req">*</span></label>
+        <input type="text" class="form-input" id="f-name" placeholder="请输入您的姓名">
+        <div class="err-msg" id="f-name-err">请填写姓名</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">手机号码 <span class="req">*</span></label>
+        <input type="tel" class="form-input" id="f-phone" placeholder="请输入手机号码" maxlength="11">
+        <div class="err-msg" id="f-phone-err">请填写正确的手机号码</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">品牌 / 机构名称</label>
+        <input type="text" class="form-input" id="f-company" placeholder="请输入品牌或机构名称">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">意向展区 <span class="opt" style="color:var(--text-light)">（选填）</span></label>
+        <div class="zone-chips">
+          <div class="zone-chip"><input type="checkbox" name="z" id="z1" value="植物本草疗愈区"><label for="z1">🌿 植物本草疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z2" value="AI科技疗愈区"><label for="z2">🤖 AI科技疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z3" value="身心疗愈区"><label for="z3">🧘 身心疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z4" value="艺术疗愈区"><label for="z4">🎨 艺术疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z5" value="情绪价值主题区"><label for="z5">💫 情绪价值主题区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z6" value="汽车生活疗愈区"><label for="z6">🚗 汽车生活疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z7" value="运动瑜伽疗愈区"><label for="z7">💪 运动瑜伽疗愈区</label></div>
+          <div class="zone-chip"><input type="checkbox" name="z" id="z8" value="音声疗愈区"><label for="z8">🎵 音声疗愈区</label></div>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" id="submit-btn" onclick="submitForm()">
+        <i class="fas fa-paper-plane"></i> <span id="submit-text">立即获取展位方案</span>
+      </button>
+      <div class="privacy-tip" id="privacy-tip">您的信息仅用于展会招商联络<br>招商顾问将在1个工作日内与您联系</div>
+    </form>
+  </div>
+
+  <!-- 招商联系人 -->
+  <div class="card">
+    <div class="card-top-bar"></div>
+    <div class="section-eyebrow">一对一服务</div>
+    <div class="section-title">招商顾问</div>
+    <div class="contact-grid">
+      <a href="tel:13973186313" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">周 莹</div>
+        <div class="contact-tel">139-7318-6313</div>
+      </a>
+      <a href="tel:17608428362" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">周向子兰</div>
+        <div class="contact-tel">176-0842-8362</div>
+      </a>
+      <a href="tel:17773745749" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">刘 琛</div>
+        <div class="contact-tel">177-7374-5749</div>
+      </a>
+      <a href="tel:13762468407" class="contact-item">
+        <div class="contact-avatar"><i class="fas fa-user"></i></div>
+        <div class="contact-name">李晓婉</div>
+        <div class="contact-tel">137-6246-8407</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="footer-theme">疗愈 · 生态 · 共生</div>
+      <p>2026华中（长沙）疗愈生态博览会</p>
+      <p>2026年6月18日—20日 · 湖南国际会展中心</p>
+    </div>
+    <p>主办：湖南会展集团有限责任公司</p>
+    <p>湖南易展科技有限公司 · 湖南优胜国际会展有限公司</p>
+    <p style="margin-top:10px;">© 2026 All Rights Reserved</p>
+  </div>
+
+</div>
+
+<!-- 底部一键拨号 -->
+<div class="bottom-cta">
+  <a href="tel:13973186313" class="bottom-cta-item">
+    <i class="fas fa-phone-alt"></i> 立即咨询
+  </a>
+</div>
+
+<!-- 成功弹窗 -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <span class="modal-icon">🌿</span>
+    <div class="modal-title" id="modal-title">提交成功！</div>
+    <div class="modal-desc" id="modal-desc">感谢您的关注！</div>
+    <button class="modal-close" onclick="closeModal()">知道了</button>
+  </div>
+</div>
+
+<script>
+  var currentIdentity = 'exhibitor';
+
+  // 倒计时计算
+  (function updateCountdown() {
+    var now = new Date();
+    var end = new Date('2026-03-31T23:59:59');
+    var diff = end - now;
+    if (diff > 0) {
+      var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('countdown-days').textContent = days + '天';
+    }
+  })();
+
+  function selectIdentity(type) {
+    currentIdentity = type;
+    document.getElementById('label-exhibitor').classList.toggle('active', type === 'exhibitor');
+    document.getElementById('label-visitor').classList.toggle('active', type === 'visitor');
+    document.getElementById('label-media').classList.toggle('active', type === 'media');
+    document.getElementById('radio-exhibitor').checked = type === 'exhibitor';
+    document.getElementById('radio-visitor').checked = type === 'visitor';
+    document.getElementById('radio-media').checked = type === 'media';
+    
+    var btn = document.getElementById('submit-btn');
+    var text = document.getElementById('submit-text');
+    var tip = document.getElementById('privacy-tip');
+    
+    if (type === 'exhibitor') {
+      text.textContent = '立即获取展位方案';
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> ' + text.textContent;
+      tip.innerHTML = '您的信息仅用于展会招商联络<br>招商顾问将在1个工作日内与您联系';
+    } else if (type === 'visitor') {
+      text.textContent = '预约招商顾问咨询';
+      btn.innerHTML = '<i class="fas fa-headset"></i> ' + text.textContent;
+      tip.innerHTML = '个人疗愈师专属服务<br>获取最新展位资讯';
+    } else {
+      text.textContent = '预约媒体合作';
+      btn.innerHTML = '<i class="fas fa-newspaper"></i> ' + text.textContent;
+      tip.innerHTML = '媒体伙伴专享权益<br>优先获取展会资讯及报道权';
+    }
+  }
+
+  function submitForm() {
+    ['f-name','f-phone'].forEach(function(id){ var e=document.getElementById(id+'-err'); if(e) e.classList.remove('show'); });
+    ['f-name','f-phone'].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove('err'); });
+    var name = (document.getElementById('f-name').value||'').trim();
+    var phone = (document.getElementById('f-phone').value||'').trim();
+    var ok = true;
+    if (!name) { document.getElementById('f-name').classList.add('err'); document.getElementById('f-name-err').classList.add('show'); ok=false; }
+    if (!/^1[3-9]\d{9}$/.test(phone)) { document.getElementById('f-phone').classList.add('err'); document.getElementById('f-phone-err').classList.add('show'); ok=false; }
+    if (!ok) return;
+    
+    var title = document.getElementById('modal-title');
+    var desc = document.getElementById('modal-desc');
+    
+    if (currentIdentity === 'exhibitor') {
+      title.textContent = '展位方案已提交！';
+      desc.textContent = '感谢 ' + name + ' ！\n招商顾问将在1个工作日内联系您\n\n2026.6.18—20 长沙芒果馆\n期待与您共赴这场疗愈盛会 🌿';
+    } else if (currentIdentity === 'visitor') {
+      title.textContent = '预约成功！';
+      desc.textContent = '感谢 ' + name + ' ！\n招商顾问将尽快与您联系\n为您提供个人疗愈师专属方案\n\n2026.6.18—20 长沙芒果馆';
+    } else {
+      title.textContent = '媒体合作已登记！';
+      desc.textContent = '感谢 ' + name + ' ！\n我们将为您安排媒体专属服务\n\n2026.6.18—20 长沙芒果馆';
+    }
+    document.getElementById('modal').classList.add('show');
+  }
+
+  function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+  ['f-name','f-phone','f-company'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function(){
+      this.classList.remove('err');
+      var e = document.getElementById(this.id + '-err');
+      if (e) e.classList.remove('show');
+    });
+  });
+</script>
+</body>
+</html>

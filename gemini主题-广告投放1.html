@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026长沙疗愈生态博览会 - 抢早鸟展位</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* 投放页需要更强烈的视觉刺激，增强主色调的对比度 */
+      --primary: #C59A51; 
+      --primary-light: #E0C188;
+      --primary-dark: #9E773A;
+      /* 警示/促单红，用于倒计时和强调 */
+      --accent: #E63946; 
+      --text-dark: #1D1D1F;
+      --text-mid: #6E6E73;
+      --text-light: #A1A1A6;
+      --bg-color: #F5F5F7;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      /* 投放页底层使用干净的浅灰底，让表单模块凸显 */
+      background: var(--bg-color);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    .container { 
+      max-width: 480px; 
+      margin: 0 auto; 
+      padding-bottom: 80px; 
+      background: #FFFFFF;
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    /* ====== 头图区 (强化视觉与钩子) ====== */
+    .hero-section {
+      /* 使用粉紫蓝渐变作为头图背景，保留品牌感 */
+      background: linear-gradient(145deg, #FDF4F7 0%, #F1EBF7 50%, #E9F4FB 100%);
+      padding: 30px 20px 40px;
+      text-align: center;
+      position: relative;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 4px 20px rgba(197, 154, 81, 0.1);
+    }
+    
+    .status-tag {
+      display: inline-block;
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border: 1px solid rgba(230, 57, 70, 0.2);
+    }
+    .status-tag i { margin-right: 4px; }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .hero-highlight { color: var(--primary); }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-mid);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .info-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .info-item { display: flex; align-items: center; gap: 4px; }
+    .info-item i { color: var(--primary); }
+
+    /* ====== 核心转化表单 (悬浮吸顶效果) ====== */
+    .form-wrapper {
+      margin: -20px 16px 20px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 10;
+      border: 1px solid rgba(197, 154, 81, 0.2);
+    }
+    
+    .form-header { text-align: center; margin-bottom: 20px; }
+    .form-title { font-size: 18px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+    .form-subtitle { font-size: 12px; color: var(--text-mid); }
+
+    .form-group { margin-bottom: 16px; }
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: #F8F9FA;
+      border: 1px solid #E9ECEF;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .form-input:focus {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(197, 154, 81, 0.1);
+    }
+    .form-input.err { border-color: var(--accent); background: #FFF5F5; }
+    .err-msg { font-size: 11px; color: var(--accent); margin-top: 4px; display: none; }
+    .err-msg.show { display: block; }
+
+    /* 身份单选按钮 */
+    .radio-group { display: flex; gap: 8px; margin-bottom: 16px; }
+    .radio-btn {
+      flex: 1; text-align: center; padding: 10px 0;
+      background: #F8F9FA; border: 1px solid #E9ECEF; border-radius: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-mid); cursor: pointer;
+    }
+    .radio-btn.active {
+      background: rgba(197, 154, 81, 0.1); border-color: var(--primary);
+      color: var(--primary-dark); font-weight: 700;
+    }
+    .radio-btn input { display: none; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #FF6B6B, var(--accent)); /* 投放页按钮用强烈的红色系 */
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(230, 57, 70, 0.3);
+      animation: pulse 2s infinite; /* 呼吸动画吸引点击 */
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    
+    .privacy-text { text-align: center; font-size: 10px; color: var(--text-light); margin-top: 10px; }
+
+    /* ====== 滚动播报 (制造火爆氛围) ====== */
+    .scroll-notice {
+      margin: 0 16px 24px;
+      background: #F8F9FA;
+      border-radius: 20px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-mid);
+      overflow: hidden;
+    }
+    .scroll-icon { color: var(--accent); }
+    .scroll-content { flex: 1; position: relative; height: 18px; }
+    .scroll-item { position: absolute; top: 0; left: 0; width: 100%; animation: scrollUp 6s infinite; opacity: 0; }
+    .scroll-item:nth-child(2) { animation-delay: 2s; }
+    .scroll-item:nth-child(3) { animation-delay: 4s; }
+    @keyframes scrollUp {
+      0%, 10% { transform: translateY(100%); opacity: 0; }
+      15%, 33% { transform: translateY(0); opacity: 1; }
+      38%, 100% { transform: translateY(-100%); opacity: 0; }
+    }
+    .highlight-name { color: var(--text-dark); font-weight: 600; }
+
+    /* ====== 核心卖点 (精简压缩) ====== */
+    .section-wrap { padding: 0 16px 24px; }
+    .sec-title { font-size: 18px; font-weight: 800; margin-bottom: 16px; text-align: center; position: relative; }
+    .sec-title::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 30px; height: 3px; background: var(--primary); border-radius: 2px; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .feature-card {
+      background: #F8F9FA; border-radius: 12px; padding: 16px 12px; text-align: center;
+      border: 1px solid #E9ECEF;
+    }
+    .f-icon { font-size: 24px; color: var(--primary); margin-bottom: 8px; }
+    .f-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .f-desc { font-size: 11px; color: var(--text-mid); }
+
+    /* ====== 媒体背书 (极其紧凑) ====== */
+    .media-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .m-logo { background: #F8F9FA; padding: 6px 12px; border-radius: 6px; font-size: 11px; color: var(--text-mid); font-weight: 600; display: flex; align-items: center; gap: 4px; border: 1px solid #E9ECEF; }
+    .m-logo i { font-size: 14px; }
+
+    /* ====== 底部浮动按钮 (广告页必备) ====== */
+    .float-bottom {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      padding: 12px 16px; box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+      z-index: 99; display: flex; gap: 10px;
+    }
+    @media (min-width: 481px) { .float-bottom { max-width: 480px; margin: 0 auto; } }
+    .btn-tel, .btn-action {
+      flex: 1; text-align: center; padding: 12px 0; border-radius: 8px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+    }
+    .btn-tel { background: #F8F9FA; color: var(--text-dark); border: 1px solid #E9ECEF; }
+    .btn-action { background: linear-gradient(135deg, #FF6B6B, var(--accent)); color: white; box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2); }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal-content { background: white; width: 280px; border-radius: 16px; padding: 30px 20px; text-align: center; }
+    .modal-icon { font-size: 40px; color: #10B981; margin-bottom: 12px; }
+    .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .modal-desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 24px; }
+    .modal-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="hero-section">
+    <div class="status-tag"><i class="fas fa-fire"></i> 展位招商全面启动</div>
+    <h1 class="hero-title">2026华中（长沙）<br><span class="hero-highlight">疗愈生态博览会</span></h1>
+    <p class="hero-sub">抢占万亿“情绪经济”线下红利</p>
+    
+    <div class="info-bar">
+      <div class="info-item"><i class="fas fa-map-marker-alt"></i> 湖南·芒果馆</div>
+      <div class="info-item"><i class="fas fa-expand-arrows-alt"></i> 20000㎡规模</div>
+      <div class="info-item"><i class="fas fa-users"></i> 3W+精准客流</div>
+    </div>
+  </div>
+
+  <div class="form-wrapper" id="formArea">
+    <div class="form-header">
+      <div class="form-title">限时抢「早鸟特惠」展位</div>
+      <div class="form-subtitle">4月30日截止 · 免费获取《招商手册》与报价</div>
+    </div>
+
+    <form onsubmit="return false;">
+      <div class="radio-group">
+        <label class="radio-btn active" id="r-brand">
+          <input type="radio" name="type" checked onclick="setType('brand')"> 品牌/机构参展
+        </label>
+        <label class="radio-btn" id="r-person">
+          <input type="radio" name="type" onclick="setType('person')"> 个人疗愈师入驻
+        </label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="f-name" class="form-input" placeholder="您的姓名 (必填)">
+        <div class="err-msg" id="f-name-err">请输入您的姓名</div>
+      </div>
+      
+      <div class="form-group">
+        <input type="tel" id="f-phone" class="form-input" placeholder="您的手机号码 (必填)" maxlength="11">
+        <div class="err-msg" id="f-phone-err">请输入正确的手机号码</div>
+      </div>
+
+      <button class="submit-btn" onclick="submitLead()">立即获取完整报价及展位图</button>
+      <div class="privacy-text"><i class="fas fa-lock" style="color:#C59A51;"></i> 您的信息已严格加密，仅用于接收官方招商资料</div>
+    </form>
+  </div>
+
+  <div class="scroll-notice">
+    <i class="fas fa-volume-up scroll-icon"></i>
+    <div class="scroll-content">
+      <div class="scroll-item">最新：<span class="highlight-name">杭州某香氛品牌</span> 刚刚预订了 18㎡ 展位</div>
+      <div class="scroll-item">最新：<span class="highlight-name">李女士(颂钵疗愈师)</span> 索取了迷你展位报价</div>
+      <div class="scroll-item">最新：<span class="highlight-name">深圳某睡眠科技公司</span> 锁定核心特装展区</div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <h2 class="sec-title">为什么选择我们？</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-bullseye f-icon"></i>
+        <div class="f-title">精准买家对接</div>
+        <div class="f-desc">定向邀约投资机构、空间主理人、渠道商，实现B端高效转化。</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-user-friends f-icon"></i>
+        <div class="f-title">C端破圈引流</div>
+        <div class="f-desc">覆盖全城情绪消费主力军，三天展期引爆品牌同城知名度。</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-gem f-icon"></i>
+        <div class="f-title">八大生态矩阵</div>
+        <div class="f-desc">涵盖本草、AI、音声、瑜伽等全产业链，打造极致场能。</div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt f-icon"></i>
+        <div class="f-title">权威机构背书</div>
+        <div class="f-desc">湖南健康服务业协会指导，芒果馆2万平米地标级场馆。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <h2 class="sec-title" style="font-size: 15px; margin-bottom: 12px;">千万级全网媒体曝光</h2>
+    <div class="media-logos">
+      <div class="m-logo"><i class="fab fa-weixin" style="color:#07C160;"></i> 微信生态</div>
+      <div class="m-logo"><i class="fab fa-tiktok" style="color:#111;"></i> 抖音</div>
+      <div class="m-logo"><i class="fas fa-book-open" style="color:#FF2442;"></i> 小红书</div>
+      <div class="m-logo"><i class="fas fa-newspaper" style="color:var(--primary);"></i> 今日头条</div>
+      <div class="m-logo"><i class="fas fa-globe" style="color:var(--primary);"></i> 人民网</div>
+      <div class="m-logo"><i class="fas fa-fire" style="color:var(--primary);"></i> 凤凰网</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="float-bottom">
+  <a href="tel:13973186313" class="btn-tel"><i class="fas fa-phone-alt"></i> 电话咨询</a>
+  <a href="#formArea" class="btn-action">索取报价单 <i class="fas fa-arrow-up"></i></a>
+</div>
+
+<div class="modal-overlay" id="successModal">
+  <div class="modal-content">
+    <i class="fas fa-check-circle modal-icon"></i>
+    <div class="modal-title">资料申请成功</div>
+    <div class="modal-desc">感谢您的信任！专属招商顾问 <strong>周莹</strong> 将在10分钟内通过电话或微信给您发送《招商手册》及最新展位图，请注意接听来电。</div>
+    <button class="modal-btn" onclick="document.getElementById('successModal').classList.remove('show')">我知道了</button>
+  </div>
+</div>
+
+<script>
+  function setType(type) {
+    document.getElementById('r-brand').classList.toggle('active', type === 'brand');
+    document.getElementById('r-person').classList.toggle('active', type === 'person');
+  }
+
+  function submitLead() {
+    var nameInput = document.getElementById('f-name');
+    var phoneInput = document.getElementById('f-phone');
+    var nameErr = document.getElementById('f-name-err');
+    var phoneErr = document.getElementById('f-phone-err');
+    
+    nameInput.classList.remove('err');
+    phoneInput.classList.remove('err');
+    nameErr.classList.remove('show');
+    phoneErr.classList.remove('show');
+    
+    var name = nameInput.value.trim();
+    var phone = phoneInput.value.trim();
+    var ok = true;
+    
+    if (!name) {
+      nameInput.classList.add('err');
+      nameErr.classList.add('show');
+      ok = false;
+    }
+    if (!/^1[3-9]\d{9}$/.test(phone)) {
+      phoneInput.classList.add('err');
+      phoneErr.classList.add('show');
+      ok = false;
+    }
+    
+    if (ok) {
+      // 显示弹窗
+      document.getElementById('successModal').classList.add('show');
+      // 真实环境中这里会发送 ajax 请求给后端
+    }
+  }
+
+  // 输入时清除错误样式
+  document.getElementById('f-name').addEventListener('input', function(){
+    this.classList.remove('err'); document.getElementById('f-name-err').classList.remove('show');
+  });
+  document.getElementById('f-phone').addEventListener('input', function(){
+    this.classList.remove('err'); document.getElementById('f-phone-err').classList.remove('show');
+  });
+</script>
+</body>
+</html>
